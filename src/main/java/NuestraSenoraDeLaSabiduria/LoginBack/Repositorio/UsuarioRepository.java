@@ -1,6 +1,8 @@
 package NuestraSenoraDeLaSabiduria.LoginBack.Repositorio;
 
 import NuestraSenoraDeLaSabiduria.LoginBack.Modelo.Usuario;
+
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
@@ -15,4 +17,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface UsuarioRepository extends MongoRepository<Usuario, String> {
   Optional<Usuario> findByNombreUsuario(String nombreUsuario);
   boolean existsByNombreUsuario(String nombreUsuario);
+  Usuario findByCodigoEstudiante(String codigoEstudiante);
 }

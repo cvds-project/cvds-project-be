@@ -119,8 +119,6 @@ public class UsuarioServicio {
 
   public String obtenerNombreEstudiante(String codigoEstudiante) {
     return usuarioRepository
-      .findByCodigoEstudiante(codigoEstudiante)
-      .get()
-      .getNombreCompleto();
+      .findByCodigoEstudiante(codigoEstudiante).getNombreUsuario();
   }
 }
