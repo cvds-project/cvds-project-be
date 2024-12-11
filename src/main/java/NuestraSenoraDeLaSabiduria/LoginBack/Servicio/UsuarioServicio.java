@@ -116,4 +116,11 @@ public class UsuarioServicio {
   public List<ResponsableEconomico> listarResponsables() {
     return responsableEconomicoRepository.findAll();
   }
+
+  public String obtenerNombreEstudiante(String codigoEstudiante) {
+    return usuarioRepository
+      .findByCodigoEstudiante(codigoEstudiante)
+      .get()
+      .getNombreCompleto();
+  }
 }
