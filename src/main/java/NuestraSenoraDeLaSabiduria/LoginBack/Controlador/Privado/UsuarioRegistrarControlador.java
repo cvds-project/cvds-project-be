@@ -1,5 +1,6 @@
 package NuestraSenoraDeLaSabiduria.LoginBack.Controlador.Privado;
 
+import NuestraSenoraDeLaSabiduria.LoginBack.Excepciones.Excepciones;
 import NuestraSenoraDeLaSabiduria.LoginBack.Modelo.Bibliotecario;
 import NuestraSenoraDeLaSabiduria.LoginBack.Modelo.BibliotecarioDTO;
 import NuestraSenoraDeLaSabiduria.LoginBack.Modelo.Estudiante;
@@ -35,16 +36,29 @@ public class UsuarioRegistrarControlador {
 
   //Este metodo esta violando el principo de que el front solo debe mostrar la informacion y
   //no debe tener logica de negocio, de momento se deja el metodo con posibilidad de cambiar en un futuro
-  /**
-   * Registrar un usuario
-   * @param usuario
-   * @return ResponseEntity
-   */
   @PostMapping("/validarResponsableEconomico")
   public boolean validarResponsableEconomico(
-    @RequestBody String responsableEconomico
+    @RequestBody ResponsableEconomicoDTO responsableEconomicoDTO
   ) {
-    return usuarioServicio.validarResponsable(responsableEconomico);
+    // Validar si el DTO o el correo electrónico es inválido
+    if (
+      responsableEconomicoDTO == null ||
+      responsableEconomicoDTO.getCorreoElectronico() == null ||
+      responsableEconomicoDTO.getCorreoElectronico().isEmpty()
+    ) {
+      return false; // Correo no válido
+    }
+
+    // Verificar si el responsable ya existe
+    boolean usuarioExiste = usuarioServicio.validarResponsable(
+      responsableEconomicoDTO.getCorreoElectronico()
+    );
+    if (usuarioExiste) {
+      return false; // Usuario existente
+    }
+
+    // Si pasa todas las validaciones, retornar true
+    return true;
   }
 
   /**

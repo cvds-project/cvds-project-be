@@ -118,9 +118,12 @@ public class UsuarioServicio {
   }
 
   public String obtenerNombreEstudiante(String codigoEstudiante) {
-    return usuarioRepository
-      .findByCodigoEstudiante(codigoEstudiante)
-      .get()
-      .getNombreCompleto();
+    Estudiante estudiante = usuarioRepository.findByCodigoEstudiante(
+      codigoEstudiante
+    );
+    if (estudiante == null) {
+      throw new RuntimeException("Estudiante no encontrado");
+    }
+    return estudiante.getNombreCompleto();
   }
 }
