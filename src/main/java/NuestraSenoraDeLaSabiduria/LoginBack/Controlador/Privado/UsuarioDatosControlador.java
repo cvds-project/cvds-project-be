@@ -1,9 +1,12 @@
 package NuestraSenoraDeLaSabiduria.LoginBack.Controlador.Privado;
 
+import NuestraSenoraDeLaSabiduria.LoginBack.Controlador.BuscandoEstudiantePorIdDTO;
 import NuestraSenoraDeLaSabiduria.LoginBack.Servicio.UsuarioServicio;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -11,10 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UsuarioDatosControlador {
 
-  final UsuarioServicio usuarioServicio;
+  @Autowired
+  private UsuarioServicio usuarioServicio;
 
-  @RequestMapping("/datosUsuario")
-  public String datosUsuario(@RequestParam String usuarioId) {
-    return usuarioServicio.obtenerNombreEstudiante(usuarioId);
+  @PostMapping("/buscandoEstudiantePorId")
+  public String datosUsuario(
+    @RequestBody BuscandoEstudiantePorIdDTO usuarioId
+  ) {
+    System.out.println("usuarioId: " + usuarioId);
+    return usuarioServicio.obtenerNombreEstudiante(usuarioId.getIdEstudiante());
   }
 }
