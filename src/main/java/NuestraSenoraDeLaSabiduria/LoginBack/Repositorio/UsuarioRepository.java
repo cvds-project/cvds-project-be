@@ -16,5 +16,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface UsuarioRepository extends MongoRepository<Usuario, String> {
   Optional<Usuario> findByNombreUsuario(String nombreUsuario);
   boolean existsByNombreUsuario(String nombreUsuario);
-  Optional<Estudiante> findByCodigoEstudiante(String codigoEstudiante);
+  Estudiante findByCodigoEstudiante(String codigoEstudiante);
 }
