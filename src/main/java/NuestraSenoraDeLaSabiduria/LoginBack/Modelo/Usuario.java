@@ -40,6 +40,10 @@ public class Usuario implements UserDetails {
     this.nombreCompleto = nombreCompleto;
   }
 
+  public Usuario() {
+
+  }
+
   public String obtenerDetallesUsuario() {
     return "Usuario: " + nombreCompleto;
   }

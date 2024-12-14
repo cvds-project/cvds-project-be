@@ -23,22 +23,31 @@ public class ResponsableEconomico {
   private String telefono;
   private String direccion;
 
+  public ResponsableEconomico(String nombreCompleto, String documentoIdentificacion, String correoElectronico, String telefono, String direccion) {
+    this.nombreCompleto = nombreCompleto;
+    this.documentoIdentificacion = documentoIdentificacion;
+    this.correoElectronico = correoElectronico;
+    this.telefono = telefono;
+    this.direccion = direccion;
+  }
+
+
   /*
    * Método que retorna los detalles del responsable económico
    * @return String
    */
   public String obtenerDetallesResponsableEconomico() {
     return (
-      "Nombre Completo: " +
-      nombreCompleto +
-      " - Documento Identificación: " +
-      documentoIdentificacion +
-      " - Correo Electrónico: " +
-      correoElectronico +
-      " - Teléfono: " +
-      telefono +
-      " - Dirección: " +
-      direccion
+            "Nombre Completo: " +
+                    nombreCompleto +
+                    " - Documento Identificación: " +
+                    documentoIdentificacion +
+                    " - Correo Electrónico: " +
+                    correoElectronico +
+                    " - Teléfono: " +
+                    telefono +
+                    " - Dirección: " +
+                    direccion
     );
   }
 }

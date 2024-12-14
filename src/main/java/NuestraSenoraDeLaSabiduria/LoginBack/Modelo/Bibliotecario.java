@@ -19,6 +19,10 @@ public class Bibliotecario extends Usuario {
     super(nombreUsuario, contrasena, nombreCompleto);
   }
 
+  public Bibliotecario() {
+    super();
+  }
+
   // Si en el futuro se necesitan más atributos específicos, se pueden agregar aquí
 
   @Override

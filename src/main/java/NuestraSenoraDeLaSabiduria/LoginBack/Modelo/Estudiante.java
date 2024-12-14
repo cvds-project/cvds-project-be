@@ -55,6 +55,10 @@ public class Estudiante extends Usuario {
     this.responsableId = builder.responsableId;
   }
 
+  public Estudiante() {
+    super();
+  }
+
   /*
    * Método que retorna los detalles del estudiante
    * @return String
