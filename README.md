@@ -1,48 +1,147 @@
-# Sistema de Gestión de Usuarios y Autenticación con JWT
+# 🔐 Sistema de Gestión de Usuarios y Autenticación con JWT  
 
-Este proyecto implementa un sistema de gestión de usuarios en una institución educativa, permitiendo la autenticación segura de estudiantes y bibliotecarios mediante **JSON Web Tokens (JWT)**. Utilizando **Spring Boot** para el backend, MongoDB para la persistencia de datos y un sistema basado en roles, el proyecto ofrece una solución eficiente y segura para el control de acceso y manejo de usuarios.
+## 📌 Descripción  
+Este proyecto implementa un **sistema de gestión de usuarios** para una institución educativa, permitiendo la **autenticación segura** de estudiantes y bibliotecarios mediante **JSON Web Tokens (JWT)**.  
 
-## Características Principales:
+Utiliza **Spring Boot** para el backend, **MongoDB** para la persistencia de datos y un sistema basado en **roles y permisos**. Además, el sistema está **desplegado en Azure**, garantizando disponibilidad y escalabilidad.  
 
-- **Autenticación JWT**: Los usuarios (Estudiantes y Bibliotecarios) pueden autenticar su identidad mediante un token JWT. Este token se incluye en las solicitudes subsecuentes para validar su sesión y acceder a recursos protegidos.
-  
-- **Manejo de Roles**: El sistema distingue entre diferentes tipos de usuarios, como **Estudiantes** y **Bibliotecarios**, asignando roles y permisos específicos que permiten controlar el acceso a diferentes áreas del sistema.
+---
 
-- **Persistencia en MongoDB**: Los usuarios, sus credenciales y roles se almacenan de forma segura en una base de datos MongoDB. La estructura de los documentos permite la fácil extensión para otros tipos de usuarios o entidades.
+## 🚀 Características Principales  
 
-- **Seguridad Mejorada**: La implementación de JWT asegura que la autenticación y autorización sean realizadas de manera eficiente y escalable sin necesidad de manejar sesiones tradicionales en el servidor.
+✅ **Autenticación JWT Segura**  
+- Los usuarios (Estudiantes y Bibliotecarios) se autentican mediante un **token JWT** que permite acceder a recursos protegidos.  
 
-## Estructura del Proyecto:
+✅ **Manejo de Roles y Permisos**  
+- Diferencia entre **Estudiantes y Bibliotecarios**, asignando permisos específicos según su rol.  
 
-- **Backend en Spring Boot**: El backend está construido con **Spring Boot**, utilizando **Spring Security** para la gestión de la seguridad y autenticación. Los tokens JWT se generan y validan en el servidor.
+✅ **Persistencia con MongoDB**  
+- Almacenamiento en una base de datos **NoSQL MongoDB**, facilitando la escalabilidad.  
 
-- **MongoDB**: Se utiliza **MongoDB** como base de datos para almacenar los detalles de los usuarios, incluyendo sus roles y estados de la cuenta.
+✅ **Despliegue en Azure**  
+- El backend está **desplegado en Azure**, utilizando **Azure App Service** para su ejecución y **Azure Cosmos DB (MongoDB API)** como base de datos.  
 
-- **Usuarios Estudiantes y Bibliotecarios**: El sistema gestiona dos tipos principales de usuarios:
-  - **Estudiantes**: Con atributos como nombre, código de estudiante, curso y año académico(este tambien tiene una relacion con **Responsable academico** por medio del correo del responsable).
-  - **Bibliotecarios**: Con roles y detalles específicos para el manejo de las operaciones administrativas.
+✅ **Seguridad Mejorada**  
+- Uso de **Spring Security + JWT** para manejar la autenticación sin sesiones tradicionales.  
 
-## Tecnologías Usadas:
+---
 
-- **Spring Boot**: Framework principal para el desarrollo del backend.
-- **MongoDB**: Base de datos NoSQL para la persistencia de usuarios.
-- **JWT**: Tecnología para la autenticación y validación de tokens de usuario.
-- **Spring Security**: Framework para manejar la seguridad y protección de rutas en la aplicación.
+## 🛠️ Tecnologías Utilizadas  
 
-## Cómo Usar:
+- **🌱 Spring Boot** → Framework principal para el backend.  
+- **🛡️ Spring Security** → Gestión de autenticación y autorización.  
+- **🔑 JWT (JSON Web Tokens)** → Seguridad en la autenticación.  
+- **💾 MongoDB / Azure Cosmos DB** → Base de datos NoSQL para la persistencia.  
+- **☁️ Azure App Service** → Plataforma de despliegue.  
+- **🐳 Docker** → Contenedorización opcional para despliegue.  
+- **✅ JUnit & Mockito** → Pruebas unitarias y cobertura de código.  
 
-1. **Configuración de la Base de Datos:**
-   Asegúrese de tener **MongoDB** configurado y corriendo en su entorno.
-   
-2. **Generación de Token JWT:**
-   Al iniciar sesión, se generará un token JWT que deberá ser incluido en el encabezado `Authorization` de todas las solicitudes subsecuentes.
+---
 
-3. **Rutas Protegidas:**
-   Las rutas que requieren autenticación están protegidas mediante validación del token JWT en el encabezado de la solicitud.
+## ⚙️ Estructura del Proyecto  
 
-4. **Configuración de Seguridad:**
-   El sistema garantiza que solo los usuarios con un token válido y el rol adecuado puedan acceder a las rutas protegidas.
+📌 **Backend en Spring Boot**  
+- Gestiona autenticación y autorización con **Spring Security** y **JWT**.  
+- Expone una **API REST** con endpoints protegidos.  
 
-## Referencias 
-- https://youtu.be/nwqQYCM4YT8?si=gusMGC7BaH6vzVoh
-- https://github.com/irojascorsico/spring-boot-jwt-authentication.git
+📌 **Base de Datos en Azure Cosmos DB**  
+- Se utiliza **MongoDB API** para almacenar usuarios y roles.  
+
+📌 **Usuarios y Roles**  
+- **Estudiantes**: Tienen atributos como **nombre, código de estudiante, curso y año académico**.  
+- **Bibliotecarios**: Poseen permisos administrativos para la gestión del sistema.  
+
+---
+
+## 🔧 Instalación y Ejecución  
+
+### 1️⃣ **Clonar el Repositorio**  
+```bash
+git clone https://github.com/tu_usuario/gestion-usuarios-jwt.git
+cd gestion-usuarios-jwt
+```
+2️⃣ Configurar la Base de Datos (MongoDB en Azure Cosmos DB)
+Si usas una base de datos local, asegúrate de tener MongoDB en ejecución:
+
+```bash
+Copiar
+Editar
+docker run -d --name mongo -p 27017:27017 mongo
+```
+Si usas Azure Cosmos DB, configura la cadena de conexión en el .env:
+
+properties
+Copiar
+Editar
+SPRING_DATA_MONGODB_URI=mongodb+srv://<usuario>:<password>@<cluster>.mongo.cosmos.azure.com/<database>?ssl=true
+JWT_SECRET=tuClaveSecretaJWT
+3️⃣ Compilar y Ejecutar el Backend
+```bash
+Copiar
+Editar
+mvn clean install
+mvn spring-boot:run
+```
+☁️ Despliegue en Azure
+El backend está desplegado en Azure App Service. Puedes probarlo en la siguiente URL:
+
+🔗 API en Producción: https://tu-api.azurewebsites.net
+
+📌 Pasos para desplegar en Azure:
+
+Configurar Azure App Service
+Crear un App Service en el portal de Azure.
+Seleccionar Java 17 y Tomcat 9+ como entorno de ejecución.
+Subir el Backend a Azure
+Construir el .jar y desplegar en Azure:
+```bash
+Copiar
+Editar
+mvn package
+az webapp deploy --resource-group tu-grupo --name tu-api --src-path target/tu-api.jar
+Configurar Base de Datos en Azure Cosmos DB
+Crear un Azure Cosmos DB con API MongoDB.
+```
+Configurar la cadena de conexión en las variables de entorno de Azure.
+🔑 Endpoints Principales
+📌 Registro de usuario
+
+http
+Copiar
+Editar
+POST /api/auth/register
+📌 Inicio de sesión
+
+http
+Copiar
+Editar
+POST /api/auth/login
+📌 Verificación de sesión
+
+http
+Copiar
+Editar
+GET /api/auth/me
+📌 Acceso a recursos protegidos
+
+http
+Copiar
+Editar
+GET /api/protegido
+Authorization: Bearer {JWT_TOKEN}
+🔐 Seguridad y Configuración
+✅ Protección de Rutas
+
+Todas las rutas protegidas requieren JWT en el encabezado de la solicitud.
+✅ Validación de Roles
+
+Se asegura que solo los usuarios con el rol adecuado accedan a ciertos endpoints.
+✅ Manejo de Sesiones
+
+No se almacenan sesiones en el servidor, mejorando rendimiento y escalabilidad.
+📚 Referencias
+Guía JWT con Spring Boot
+Repositorio Base en GitHub
+Documentación de Azure App Service
+📩 Contacto
+Si tienes preguntas o sugerencias, ¡estaremos encantados de escucharte!
